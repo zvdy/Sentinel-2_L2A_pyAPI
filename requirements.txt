@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+typing
+matplotlib
+rasterio
+pillow
+python-multipart # for file upload
