@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: py-backend
+spec:
+  selector:
+    app: py-backend
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8000
+  type: LoadBalancer
