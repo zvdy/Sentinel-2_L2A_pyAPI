@@ -20,6 +20,10 @@ async def get_image_attributes(image_file: UploadFile = File(...)):
         bands = dataset.count
         crs = dataset.crs.to_dict()
         bbox = dataset.bounds
+        driver = dataset.driver
+        dtype = dataset.dtypes[0]
+        transform = dataset.transform
+
 
     # Return the attributes as a JSON object
     return {
@@ -27,7 +31,10 @@ async def get_image_attributes(image_file: UploadFile = File(...)):
         "height": height,
         "bands": bands,
         "crs": crs,
-        "bbox": bbox
+        "bbox": bbox,
+        "driver": driver,
+        "dtype": dtype,
+        "transform": transform
     }
 
 
