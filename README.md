@@ -6,9 +6,31 @@ This is a Python backend that uses FastAPI to expose a REST API.
 
 The API works with Sentinel-2 satellite images. It has two endpoints: 
 
-- `/attributes`: Returns the attributes of the image (e.g. width, height, bands, etc.)
+- `/attributes`: Returns the attributes of the image 
+
+    - width: The width of the raster in pixels.
+    - height: The height of the raster in pixels.
+    - bands: The number of bands in the raster. Each band represents a different channel of data, such as red, green, and blue.
+    - crs: The coordinate reference system (CRS) of the raster. The CRS defines how the raster is projected onto the Earth.
+    - bbox: The bounding box of the raster. The bounding box defines the minimum and maximum latitude and longitude values of the raster.
+    - driver: The driver that was used to create the raster file. The driver defines the format of the raster file.
+    - dtype: The data type of the raster image. The data type defines the type of data that is stored in each pixel of the image.
+    - transform: The transform of the raster image. The transform defines how the raster image is georeferenced.
+    - nodata: The nodata value of the raster image. The nodata value defines which pixels are not valid data.
+
+> To retrieve all attributes, you can use the following snippet, which uses the `rasterio` library to read the image and retrieve the metadata _(alternatively, you can use dataset.attr)_: 
+
+```python
+import rasterio
+
+with rasterio.open("S2L2A_2022-06-09.tiff") as dataset:
+    metadata = dataset.meta
+
+print(metadata)
+```
 
 - `/thumbnail`: Returns a thumbnail of the image at a given resolution (e.g. 200x200)
+
 
 The application uses Rasterio to read the image and Pillow to create the thumbnail.
 
